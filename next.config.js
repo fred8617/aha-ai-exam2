@@ -1,4 +1,16 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        // Cannot visit because it's a fake url
+        protocol: "https",
+        hostname: "cdn.fakercloud.com",
+        port: "",
+        pathname: "/avatars/**",
+      },
+    ],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

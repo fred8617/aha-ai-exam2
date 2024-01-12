@@ -7,7 +7,7 @@ type DivProps = DetailedHTMLProps<
 >;
 
 type HeadLineProps = {
-  level: 3 | 5;
+  level: 3 | 4 | 5;
 } & DivProps;
 
 export const HeadLine: FC<HeadLineProps> = ({
@@ -17,12 +17,16 @@ export const HeadLine: FC<HeadLineProps> = ({
 }) => {
   const level3 = level === 3;
   const level5 = level === 5;
+  const level4 = level === 4;
   return (
     <div
       className={classnames(
         {
           "text-2xl": level5,
           "leading-9": level5,
+          "text-[30px]": level4,
+          "leading-[45px]": level4,
+          "tracking-[0.25px]": level4,
           "text-[48px]": level3,
           "leading-[50px]": level3,
           bold: level3,
@@ -46,10 +50,14 @@ export const Subtitle: FC<DivProps> = ({ className = "", ...rest }) => {
   );
 };
 
-export const HeadLine5: FC<DivProps> = (props) => (
-  <HeadLine {...props} level={5} />
-);
-
 export const HeadLine3: FC<DivProps> = (props) => (
   <HeadLine {...props} level={3} />
+);
+
+export const HeadLine4: FC<DivProps> = (props) => (
+  <HeadLine {...props} level={4} />
+);
+
+export const HeadLine5: FC<DivProps> = (props) => (
+  <HeadLine {...props} level={5} />
 );
