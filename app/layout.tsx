@@ -3,6 +3,8 @@ import { Ubuntu } from "next/font/google";
 import "./globals.css";
 import NavBar, { Menu } from "@/components/NavBar";
 import MenuIcon from "@/components/icons/Menu";
+import theme from "./theme";
+import { ThemeProvider } from "@mui/material/styles";
 
 const ubuntu = Ubuntu({
   weight: ["300", "400", "500", "700"],
@@ -29,10 +31,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={ubuntu.className}>
-        <div className="flex">
-          <NavBar menus={menus} />
-          <div className="flex-auto">{children}</div>
-        </div>
+        <ThemeProvider theme={theme}>
+          <div className="flex">
+            <NavBar menus={menus} />
+            <div className="text-white flex-auto bg-[var(--Greyscale-BG---dark)]">
+              {children}
+            </div>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

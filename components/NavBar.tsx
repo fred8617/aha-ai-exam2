@@ -40,10 +40,9 @@ const NavBar: FC<NavBarProps> = ({ menus }) => {
                 "items-center",
                 "justify-center",
                 "flex-col",
-                "text-white",
                 "text-xs",
                 "cursor-pointer",
-                { "text-transparent": !routeMatch }
+                { "text-transparent": !routeMatch, "text-white": routeMatch }
               )}
               key={menu.label}
             >
