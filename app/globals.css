@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --Greyscale-light-bg:#1B1B1B;
+}
+
+.text-fill-transparent{
+  -webkit-text-fill-color: transparent;
+}
+
+
+
+
+
+
