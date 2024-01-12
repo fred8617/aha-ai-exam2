@@ -8,6 +8,26 @@ export default createTheme({
     },
   },
   components: {
+    MuiButton: {
+      styleOverrides: {
+        contained: {
+          height: 40,
+          backgroundColor: "var(--Primary-Main)!important",
+          color: "var(--BG-Default)",
+          fontFamily: "Ubuntu",
+          fontSize: "14px",
+          fontWeight: 700,
+          lineHeight: "14px",
+          padding: "13px 16px",
+          border: "1px solid var(--BG-Default)",
+          ":hover": {
+            border: "1px solid var(--Primary-Main)",
+            color: "var(--Primary-Main)",
+            backgroundColor: "var(--BG-Default)!important",
+          },
+        },
+      },
+    },
     MuiInputBase: {
       styleOverrides: {
         root: {
@@ -38,6 +58,7 @@ export default createTheme({
         },
         input: {
           padding: "20px 18px 19px",
+          height: 21,
         },
         notchedOutline: {
           border: "3px solid var(--greyscale-white-50)",
@@ -57,7 +78,10 @@ export default createTheme({
         root: {
           color: "transparent",
           height: 8,
-          padding: "6px 0!important",
+          padding: "6px 0",
+          "@media (pointer: coarse)": {
+            padding: "6px 0",
+          },
         },
         track: {
           background: "linear-gradient(270deg, #FFD25F 0.13%, #FF5C01 100%)",
@@ -68,16 +92,27 @@ export default createTheme({
         mark: {
           display: "none",
         },
-        markLabel: ({ ownerState, ["data-index"]: index }) => {
-          return {
-            fontSize: 16,
-            fontWeight: 500,
-            lineHeight: "24px",
-            letterSpacing: "0.15px",
-            color: "#fff",
-            top: 18,
-            opacity: ownerState.value === (index as number) + 1 ? 1 : 0.5,
-          };
+        markLabel: ({ ownerState, ["data-index"]: index }) => ({
+          "@media (pointer: coarse)": {
+            top: 28,
+          },
+          fontSize: 16,
+          fontWeight: 500,
+          lineHeight: "24px",
+          letterSpacing: "0.15px",
+          color: "#fff",
+          top: 28,
+          opacity: ownerState.value === (index as number) + 1 ? 1 : 0.5,
+        }),
+        thumb: {
+          "::after": {
+            width: 14,
+            height: 14,
+            boxSizing: "content-box",
+            borderColor: "var(--Tutor-Light)",
+            borderWidth: 6,
+            backgroundColor: "var(--Greyscale-BG---light)",
+          },
         },
       },
     },

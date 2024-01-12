@@ -7,6 +7,10 @@
   --Greyscale-BG---dark:#181818;
   --greyscale-white-50:rgba(255, 255, 255, 0.50);
   --Tutor-Main:#FF9B33;
+  --Tutor-Light:#FFD05D;
+  --Greyscale-BG---light:#1B1B1B;
+  --Primary-Main:#fff;
+  --BG-Default: #121212;
 }
 
 .text-fill-transparent{
