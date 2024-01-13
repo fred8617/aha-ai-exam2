@@ -54,7 +54,7 @@ const Result: FC<ResultProps> = () => {
         Results
         <div
           onClick={handGoback}
-          className="absolute top-1/2 left-[-51px] translate-y-[-50%]"
+          className="absolute top-1/2 left-[-51px] translate-y-[-50%] cursor-pointer"
         >
           <Left />
         </div>
