@@ -32,4 +32,4 @@ export const search = (params: SearchParams) =>
   );
 
 export const useSearchQuery = (params: SearchParams) =>
-  useQuery("search", async () => search(params));
+  useQuery(["search", ...Object.values(params)], async () => search(params));

@@ -13,7 +13,7 @@ export default function Home() {
           {params.size === 0 ? <Search /> : <Result />}
         </div>
       </div>
-      <div className="basis-[375px]">follower</div>
+      <div className="basis-[375px] max-[1439px]:hidden">follower</div>
     </div>
   );
 }
