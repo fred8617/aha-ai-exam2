@@ -19,12 +19,14 @@
     "react": "^18",
     "react-dom": "^18",
     "react-query": "^3.39.3",
-    "react-virtualized-auto-sizer": "^1.0.20"
+    "react-virtualized-auto-sizer": "^1.0.20",
+    "react-window": "^1.8.10"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-window": "^1.8.8",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
