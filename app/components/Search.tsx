@@ -59,6 +59,7 @@ const Search: FC<SearchProps> = () => {
         onChange={handleKeywordChange}
         className="mt-5 w-full"
         label="Keyword"
+        id="keyword"
         variant="outlined"
       />
       <Divider className="my-[30px]" />
