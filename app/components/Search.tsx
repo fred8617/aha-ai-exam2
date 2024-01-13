@@ -79,7 +79,7 @@ const Search: FC<SearchProps> = () => {
       <Button
         onClick={handleSearchClick}
         className="w-[343px] absolute bottom-[87px]"
-        variant="contained"
+        variant="aha-contained"
       >
         SEARCH
       </Button>

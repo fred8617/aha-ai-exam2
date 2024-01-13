@@ -113,7 +113,7 @@ const Result: FC<ResultProps> = () => {
                             onClick={handleShowMore}
                             disabled={isLoading}
                             className="w-[343px]"
-                            variant="contained"
+                            variant="aha-contained"
                           >
                             {isLoading ? "LOADING..." : "MORE"}
                           </Button>
