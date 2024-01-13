@@ -1,6 +1,70 @@
 "use client";
-import { createTheme } from "@mui/material/styles";
+import { Interpolation, Theme, createTheme } from "@mui/material/styles";
 
+type Style = Interpolation<{
+  theme: Omit<Theme, "components">;
+}>;
+
+const ahaButtonBaseStyle: Style = {
+  textTransform: "none",
+  fontFamily: "Ubuntu",
+};
+
+const ahaButtonDefaultSize: Style = {
+  height: 40,
+  fontSize: "14px",
+  lineHeight: "14px",
+  fontWeight: 700,
+};
+
+const ahaButtonSmallSize: Style = {
+  height: 29,
+  fontSize: "12px",
+  lineHeight: "12px",
+  fontWeight: 400,
+  padding: "8px 10px",
+};
+
+const ahaButtonContainedStyle: Style = {
+  backgroundColor: "var(--Primary-Main)!important",
+  color: "var(--BG-Default)",
+  border: "1px solid var(--BG-Default)",
+  ":hover": {
+    border: "1px solid var(--Primary-Main)",
+    color: "var(--Primary-Main)",
+    backgroundColor: "var(--BG-Default)!important",
+  },
+  ...ahaButtonBaseStyle,
+};
+
+const ahaButtonOutlinedStyle: Style = {
+  border: "1px solid var(--Primary-Main)",
+  color: "var(--Primary-Main)",
+  backgroundColor: "var(--BG-Default)!important",
+  ":hover": {
+    backgroundColor: "var(--Primary-Main)!important",
+    color: "var(--BG-Default)",
+    border: "1px solid var(--BG-Default)",
+  },
+  ...ahaButtonBaseStyle,
+};
+
+const ahaButtonOutlinedSmall = {
+  ...ahaButtonSmallSize,
+  ...ahaButtonOutlinedStyle,
+};
+
+const ahaButtonContained: Style = {
+  ...ahaButtonDefaultSize,
+  ...ahaButtonContainedStyle,
+};
+const ahaButtonContainedSmall: Style = {
+  ...ahaButtonSmallSize,
+  ...ahaButtonContainedStyle,
+};
+const ahaButtonRound: Style = {
+  borderRadius: 20,
+};
 export default createTheme({
   palette: {
     primary: {
@@ -9,24 +73,25 @@ export default createTheme({
   },
   components: {
     MuiButton: {
-      styleOverrides: {
-        contained: {
-          height: 40,
-          backgroundColor: "var(--Primary-Main)!important",
-          color: "var(--BG-Default)",
-          fontFamily: "Ubuntu",
-          fontSize: "14px",
-          fontWeight: 700,
-          lineHeight: "14px",
-          padding: "13px 16px",
-          border: "1px solid var(--BG-Default)",
-          ":hover": {
-            border: "1px solid var(--Primary-Main)",
-            color: "var(--Primary-Main)",
-            backgroundColor: "var(--BG-Default)!important",
-          },
+      variants: [
+        {
+          props: { variant: "aha-contained" },
+          style: ahaButtonContained,
         },
-      },
+        {
+          props: { variant: "aha-contained", size: "small" },
+          style: ahaButtonContainedSmall,
+        },
+        {
+          props: { variant: "aha-contained-round", size: "small" },
+          style: { ...ahaButtonContainedSmall, ...ahaButtonRound },
+        },
+        {
+          props: { variant: "aha-outlined-round", size: "small" },
+          style: { ...ahaButtonOutlinedSmall, ...ahaButtonRound },
+        },
+      ],
+      styleOverrides: {},
     },
     MuiInputBase: {
       styleOverrides: {
@@ -112,6 +177,31 @@ export default createTheme({
             borderColor: "var(--Tutor-Light)",
             borderWidth: 6,
             backgroundColor: "var(--Greyscale-BG---light)",
+          },
+        },
+      },
+    },
+    MuiTabs: {
+      styleOverrides: {
+        indicator: {
+          backgroundColor: "var(--Primary-Main)",
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          fontSize: 16,
+          textTransform: "none",
+          fontFamily: "Ubuntu",
+          letterSpacing: "0.15px",
+          minHeight: "0",
+          padding: "13px 0",
+          color: "var(--Greyscale-500)",
+          lineHeight: "20px",
+          "&.Mui-selected": {
+            color: "var(--Primary-Main)",
+            fontWeight: 700,
           },
         },
       },
