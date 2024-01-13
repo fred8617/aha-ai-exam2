@@ -50,7 +50,6 @@ const Friends: FC<FriendsProps> = () => {
   const itemCount = isLoading
     ? totalDataLoaded + loadingCardNumber
     : Math.min(totalDataLoaded + 1, total.current);
-  console.log(left, itemCount);
   const handleChangeTab = (
     _event: React.SyntheticEvent,
     newValue: FriendsType
