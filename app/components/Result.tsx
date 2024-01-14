@@ -77,7 +77,7 @@ const Result: FC<ResultProps> = () => {
       <HeadLine5 className="xs:flex hidden pt-[20px] pb-[24px]">
         Results
       </HeadLine5>
-      <div className="overflow-hidden h-[calc(100vh-167px)]">
+      <div className="xs:h-[calc(100vh-150px)] overflow-hidden h-[calc(100vh-167px)]">
         <AutoSizer
           onResize={() =>
             listRef.current?.resetAfterIndices({ columnIndex: 0, rowIndex: 0 })
@@ -98,6 +98,19 @@ const Result: FC<ResultProps> = () => {
             const postProps = xs ? { width, height: scaleHeight } : undefined;
             return (
               <Grid
+                onScroll={({ scrollTop }) => {
+                  if (isLoading) {
+                    return;
+                  }
+                  if (
+                    showMoreButton &&
+                    // Because the loading text height is less than 40
+                    // If there more data, we can scroll 1px to trigger load more
+                    scrollTop === rowCount * rowHeight - height + 40
+                  ) {
+                    setPage(page + 1);
+                  }
+                }}
                 ref={listRef}
                 columnCount={columnCount}
                 columnWidth={() => columnWidth}
@@ -128,9 +141,26 @@ const Result: FC<ResultProps> = () => {
                             }
                           />
                         ) : (
-                          isLoading && <Card.LoadingCard />
+                          isLoading && <Card.LoadingCard post={postProps} />
                         )}
                       </div>
+                      {xs && isLast && (
+                        <div
+                          style={{
+                            ...style,
+                            textAlign: "center",
+                            // Make loading text heigt less than normal height then we can trigger load more
+                            height: isLoading ? 39 : 40,
+                            top: (style.top! as number) + rowHeight,
+                          }}
+                        >
+                          {isLoading
+                            ? "Loading..."
+                            : showMoreButton
+                            ? "Pull to Load More"
+                            : "No More Data"}
+                        </div>
+                      )}
                       {showMoreButton && !xs && isLast && (
                         <div
                           style={{
