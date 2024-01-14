@@ -6,6 +6,7 @@ import MenuIcon from "@/components/icons/Menu";
 import theme from "./theme";
 import { ThemeProvider } from "@mui/material/styles";
 import QueryProvider from "@/components/QueryProvider";
+import { AppProvider } from "./context";
 
 const ubuntu = Ubuntu({
   weight: ["300", "400", "500", "700"],
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 
 // This may be retrieved from some BE api with user session / info
 // This also can be extracted to a single routes file
-const menus: Menu[] = [
+export const menus: Menu[] = [
   { route: "/", label: "Home", icon: MenuIcon },
   { route: "/tags", label: "Tags", icon: MenuIcon, dot: true },
 ];
@@ -34,12 +35,14 @@ export default function RootLayout({
       <body className={ubuntu.className}>
         <QueryProvider>
           <ThemeProvider theme={theme}>
-            <div className="flex">
-              <NavBar menus={menus} />
-              <div className="text-white flex-auto bg-[var(--Greyscale-BG---dark)]">
-                {children}
+            <AppProvider menus={menus}>
+              <div className="flex">
+                <NavBar className="xs:hidden" menus={menus} />
+                <div className="text-white flex-auto bg-[var(--Greyscale-BG---dark)]">
+                  {children}
+                </div>
               </div>
-            </div>
+            </AppProvider>
           </ThemeProvider>
         </QueryProvider>
       </body>

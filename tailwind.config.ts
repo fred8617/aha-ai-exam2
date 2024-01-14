@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-
 const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,6 +7,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: { xs: { min: "0px", max: "630px" }, "2xl": "1440px" },
       backgroundImage: {
         "tutor-gradient--light":
           "linear-gradient(270deg, #FFD25F 0.13%, #FF5C01 100%)",

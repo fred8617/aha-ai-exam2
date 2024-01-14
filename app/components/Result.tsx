@@ -1,8 +1,8 @@
 "use client";
 import Left from "@/components/icons/Left";
-import { HeadLine4 } from "@/components/styled";
+import { HeadLine4, HeadLine5 } from "@/components/styled";
 import { useSearchParams, useRouter } from "next/navigation";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
 import { Button } from "@mui/material";
 import { SearchParams, useSearchQuery } from "../api";
 import queryString from "query-string";
@@ -43,16 +43,13 @@ const Result: FC<ResultProps> = () => {
    */
   const loadingCardNumber = Math.min(left, pageSize) || pageSize;
   const showMoreButton = totalPages.current > page;
-  const columnCount = 3;
+
   // When loading add the loading count then we can use Skeleton
   const length = isLoading
     ? totalDataLoaded + loadingCardNumber
     : totalDataLoaded;
-  const basicRowCount = Math.ceil(length / columnCount);
-  // Left 1 row for MORE button
-  const rowCount = showMoreButton ? basicRowCount + 1 : basicRowCount;
+
   // A little hack way for reset the vitual list
-  const prevRowCount = useRef<number>(rowCount);
   const handGoback = () => {
     router.back();
   };
@@ -60,15 +57,9 @@ const Result: FC<ResultProps> = () => {
   const handleShowMore = () => {
     setPage(page + 1);
   };
-  useEffect(() => {
-    if (isLoading) {
-      listRef.current?.resetAfterRowIndex(prevRowCount.current - 1, true);
-      prevRowCount.current = rowCount;
-    }
-  }, [isLoading]);
   return (
     <>
-      <HeadLine4 className="relative ml-[7px] mt-[92px] mb-[24px]">
+      <HeadLine4 className="xs:hidden relative ml-[7px] mt-[92px] mb-[24px]">
         Results
         <div
           onClick={handGoback}
@@ -77,38 +68,78 @@ const Result: FC<ResultProps> = () => {
           <Left />
         </div>
       </HeadLine4>
+      <HeadLine5 className="xs:flex items-center hidden relative my-[17px]">
+        <div className="pr-[13px]" onClick={handGoback}>
+          <Left />
+        </div>
+        Home Page
+      </HeadLine5>
+      <HeadLine5 className="xs:flex hidden pt-[20px] pb-[24px]">
+        Results
+      </HeadLine5>
       <div className="overflow-hidden h-[calc(100vh-167px)]">
-        <AutoSizer>
+        <AutoSizer
+          onResize={() =>
+            listRef.current?.resetAfterIndices({ columnIndex: 0, rowIndex: 0 })
+          }
+        >
           {({ height, width }) => {
+            const screenWidth = document.documentElement.clientWidth;
+            const xs = screenWidth > 0 && screenWidth <= 850;
+            const md = screenWidth > 850 && screenWidth < 1024;
+            const lg = screenWidth >= 1024;
+            const columnCount = lg ? 3 : md ? 2 : xs ? 1 : 3;
+            const columnWidth = width / columnCount;
+            const rowCount = Math.ceil(length / columnCount);
+            // From figma picture
+            const pictureScale = 222.67 / 335;
+            const scaleHeight = width * pictureScale;
+            const rowHeight = xs ? scaleHeight + 20.33 + 22 + 17 + 40 : 228;
+            const postProps = xs ? { width, height: scaleHeight } : undefined;
             return (
               <Grid
                 ref={listRef}
                 columnCount={columnCount}
-                columnWidth={() => width / columnCount}
+                columnWidth={() => columnWidth}
                 height={height}
                 width={width}
                 rowCount={rowCount}
-                rowHeight={(index: number) =>
-                  showMoreButton
-                    ? index === rowCount - 1
-                      ? // MORE button height
-                        40
-                      : 228
-                    : 228
-                }
+                rowHeight={() => rowHeight}
               >
                 {({ rowIndex, columnIndex, style }) => {
                   const index = rowIndex * columnCount + columnIndex;
                   const user = allDatas.current[index];
                   // The accurate condition to judge if render the MORE button
-                  const showMore =
-                    showMoreButton &&
+                  const isLast =
                     rowIndex === rowCount - 1 &&
-                    columnIndex === 0;
+                    columnIndex === columnCount - 1;
+
                   return (
-                    <div style={style}>
-                      {showMore ? (
-                        <div className="mt-[8px]">
+                    <>
+                      <div style={style}>
+                        {user ? (
+                          <Card
+                            postProps={postProps}
+                            post={`/image ${(index % 3) + 1}.png`}
+                            title={user.name}
+                            // Add a index for clearly desc
+                            description={
+                              index + 1 + "  " + `by ${user.username}`
+                            }
+                          />
+                        ) : (
+                          isLoading && <Card.LoadingCard />
+                        )}
+                      </div>
+                      {showMoreButton && !xs && isLast && (
+                        <div
+                          style={{
+                            ...style,
+                            height: 40,
+                            left: 0,
+                            top: (style.top! as number) + rowHeight + 8,
+                          }}
+                        >
                           <Button
                             onClick={handleShowMore}
                             disabled={isLoading}
@@ -118,17 +149,8 @@ const Result: FC<ResultProps> = () => {
                             {isLoading ? "LOADING..." : "MORE"}
                           </Button>
                         </div>
-                      ) : user ? (
-                        <Card
-                          post={`/image ${(index % 3) + 1}.png`}
-                          title={user.name}
-                          // Add a index for clearly desc
-                          description={index + 1 + "  " + `by ${user.username}`}
-                        />
-                      ) : (
-                        isLoading && <Card.LoadingCard />
                       )}
-                    </div>
+                    </>
                   );
                 }}
               </Grid>

@@ -58,13 +58,16 @@ const ahaButtonContained: Style = {
   ...ahaButtonDefaultSize,
   ...ahaButtonContainedStyle,
 };
+
 const ahaButtonContainedSmall: Style = {
   ...ahaButtonSmallSize,
   ...ahaButtonContainedStyle,
 };
+
 const ahaButtonRound: Style = {
   borderRadius: 20,
 };
+
 export default createTheme({
   palette: {
     primary: {
@@ -144,6 +147,7 @@ export default createTheme({
           color: "transparent",
           height: 8,
           padding: "6px 0",
+          marginBottom: 26,
           "@media (pointer: coarse)": {
             padding: "6px 0",
           },

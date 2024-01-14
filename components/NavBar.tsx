@@ -4,6 +4,7 @@ import classnames from "classnames";
 import React from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Dot from "./icons/Dot";
+import { Logo } from "./styled";
 
 export type Menu = {
   route: string;
@@ -15,26 +16,32 @@ export type Menu = {
 
 export type NavBarProps = {
   menus: Menu[];
+  className?: string;
 };
 
-const NavBar: FC<NavBarProps> = ({ menus }) => {
+const NavBar: FC<NavBarProps> = ({ menus, className }) => {
   const router = useRouter();
   const pathname = usePathname();
 
   return (
-    <div className="basis-20 h-screen bg-[var(--Greyscale-light-bg)]">
-      <div className="flex items-center justify-center w-full h-[88px] mb-2">
-        <div className="leading-[15px] text-[13px] text-fill-transparent bg-tutor-gradient--light bg-clip-text font-bold">
-          LOGO
-        </div>
+    <div
+      className={classnames(
+        "xs:flex xs:basis-[66px] xs:justify-center basis-20 shrink-0 h-screen bg-[var(--Greyscale-light-bg)]",
+        className
+      )}
+    >
+      <div className="xs:hidden flex items-center justify-center w-full h-[88px] mb-2">
+        <Logo />
       </div>
-      <div>
+      <div className="xs:flex xs:items-center">
         {menus.map((menu) => {
           const routeMatch = pathname === menu.route;
           return (
             <div
               onClick={() => router.push(menu.route)}
               className={classnames(
+                "xs:mb-0",
+                "xs:px-[25px]",
                 "mb-[22px]",
                 "flex",
                 "items-center",
@@ -54,12 +61,12 @@ const NavBar: FC<NavBarProps> = ({ menus }) => {
               >
                 {React.createElement(menu.icon)}
                 {menu.dot && !routeMatch && (
-                  <div className="absolute top-0 right-0 translate-y-[-50%] translate-x-1/2">
+                  <div className="xs:hidden absolute top-0 right-0 translate-y-[-50%] translate-x-1/2">
                     <Dot />
                   </div>
                 )}
               </div>
-              {menu.label}
+              <span className="xs:hidden">{menu.label}</span>
             </div>
           );
         })}

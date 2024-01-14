@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { FC } from "react";
 import Skeleton from "@mui/material/Skeleton";
+
+type PostProps = { width?: number; height?: number };
 export type CardProps = {
   /**
    * @string
@@ -9,23 +11,30 @@ export type CardProps = {
    * Custom render
    */
   post: string | React.ReactNode;
+  postProps?: PostProps;
   title: string;
   description: string;
 };
 
 const Card: FC<CardProps> & { LoadingCard: typeof LoadingCard } = ({
   post,
+  postProps,
   title,
   description,
 }) => {
   return (
     <div>
       {typeof post === "string" ? (
-        <Image src={post} width={219} height={146} alt={title} />
+        <Image
+          src={post}
+          width={postProps?.width ?? 219}
+          height={postProps?.height ?? 146}
+          alt={title}
+        />
       ) : (
         post
       )}
-      <div className="truncate  max-w-full text-[var(--Greyscale-white)] text-[14.9px] leading-[22.35px] tracking-[0.14px] mt-[12px]">
+      <div className="xs:mt-[20px] truncate max-w-full text-[var(--Greyscale-white)] text-[14.9px] leading-[22.35px] tracking-[0.14px] mt-[12px]">
         {title}
       </div>
       <div className="text-[var(--Greyscale-400)] text-[11.175px] leading-[16.762px] tracking-[0.373px]">
@@ -37,7 +46,7 @@ const Card: FC<CardProps> & { LoadingCard: typeof LoadingCard } = ({
 
 type LoadingCardProps = {
   // Skeleton width and height of the post position
-  post?: { width?: number; height?: number };
+  post?: PostProps;
 };
 
 const LoadingCard: FC<LoadingCardProps> = ({ post }) => {

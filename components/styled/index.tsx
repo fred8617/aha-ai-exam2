@@ -61,3 +61,9 @@ export const HeadLine4: FC<DivProps> = (props) => (
 export const HeadLine5: FC<DivProps> = (props) => (
   <HeadLine {...props} level={5} />
 );
+
+export const Logo = () => (
+  <div className="inline-block h-[15px] leading-[15px] text-[13px] text-fill-transparent bg-tutor-gradient--light bg-clip-text font-bold">
+    LOGO
+  </div>
+);
