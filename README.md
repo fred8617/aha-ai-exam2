@@ -1,38 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Aha AI Exam2
 
-## Getting Started
+## Requirements
 
-First, run the development server:
+### Front-End Frameworks
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+React + Typescript + Next.js
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### CSS Frameworks
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+MUI + Tailwind
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Coding Styles
 
-## Learn More
+<https://github.com/airbnb/javascript>
 
-To learn more about Next.js, take a look at the following resources:
+### Hosting
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<https://aha-ai-exam2.vercel.app/>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Pixel-Perfect Side-by-Side Testing
 
-## Deploy on Vercel
+<https://www.figma.com/file/ToWLoNDLlE7hY6Uyatu4Pq/Pixel-Perfect-Side-by-Side-Testing?type=design&node-id=0-1&mode=design&t=8ar3S9hVgkyaPqKU-0>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Assessment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Page Layout
 
-Empty Component
+- [x] Nav Bar [10 web/mobile]
+- [x] Home [20 web/mobile]
+- [x] Results [30 web/mobile]
+- [x] Followers/Following [20 web/mobile]
+- [x] Tags [20 web/mobile]
+
+### Routing
+
+- [x] Home page → Tag page → (back)
+- [x] Home page → Search page → (back)
+
+### API Connections (use <https://avl-frontend-exam.herokuapp.com>)
+
+- [x] Friends
+  - [x] Following
+  - [x] Followers
+- [x] Search
+  - [ ] Empty Content
+- [x] Tags
+
+### Advanced Effects
+
+- [x] Skeleton loading screen
+  - [x] Results
+  - [x] Tags
+  - [x] Friends
+- [x] Infinite loading
+  - [x] Results in xs screen
+  - [x] Results in large screen - using virtualized grid, need click `More` button
+  - [x] Friends
+
+### Other (If it is required or have enough time)
+
+- [ ] Unit test with Jest
+- [ ] E2E test with Cypress
