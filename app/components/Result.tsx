@@ -94,13 +94,6 @@ const Result: FC<ResultProps> = () => {
             return (
               <Grid
                 onScroll={({ scrollTop }) => {
-                  console.log(
-                    scrollTop,
-                    rowCount,
-                    rowHeight,
-                    rowCount * rowHeight - height + 40
-                  );
-
                   if (isLoading) {
                     return;
                   }
