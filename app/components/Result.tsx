@@ -9,6 +9,7 @@ import queryString from "query-string";
 import Card from "@/components/Card";
 import { VariableSizeGrid as Grid } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
+import NavBack from "@/components/NavBack";
 
 export type ResultProps = {};
 
@@ -49,8 +50,7 @@ const Result: FC<ResultProps> = () => {
     ? totalDataLoaded + loadingCardNumber
     : totalDataLoaded;
 
-  // A little hack way for reset the vitual list
-  const handGoback = () => {
+  const handleGoBack = () => {
     router.back();
   };
 
@@ -62,18 +62,13 @@ const Result: FC<ResultProps> = () => {
       <HeadLine4 className="xs:hidden relative ml-[7px] mt-[92px] mb-[24px]">
         Results
         <div
-          onClick={handGoback}
+          onClick={handleGoBack}
           className="absolute top-1/2 left-[-51px] translate-y-[-50%] cursor-pointer"
         >
           <Left />
         </div>
       </HeadLine4>
-      <HeadLine5 className="xs:flex items-center hidden relative my-[17px]">
-        <div className="pr-[13px]" onClick={handGoback}>
-          <Left />
-        </div>
-        Home Page
-      </HeadLine5>
+      <NavBack onBackIconClick={handleGoBack}> Home Page</NavBack>
       <HeadLine5 className="xs:flex hidden pt-[20px] pb-[24px]">
         Results
       </HeadLine5>

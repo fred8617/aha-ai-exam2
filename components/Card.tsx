@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FC } from "react";
 import Skeleton from "@mui/material/Skeleton";
+import classnames from "classnames";
 
 type PostProps = { width?: number; height?: number };
 export type CardProps = {
@@ -13,6 +14,7 @@ export type CardProps = {
   post: string | React.ReactNode;
   postProps?: PostProps;
   title: string;
+  titleClassName?: string;
   description: string;
 };
 
@@ -20,6 +22,7 @@ const Card: FC<CardProps> & { LoadingCard: typeof LoadingCard } = ({
   post,
   postProps,
   title,
+  titleClassName,
   description,
 }) => {
   return (
@@ -34,7 +37,12 @@ const Card: FC<CardProps> & { LoadingCard: typeof LoadingCard } = ({
       ) : (
         post
       )}
-      <div className="xs:mt-[20px] truncate max-w-full text-[var(--Greyscale-white)] text-[14.9px] leading-[22.35px] tracking-[0.14px] mt-[12px]">
+      <div
+        className={classnames(
+          "xs:mt-[20px] truncate max-w-full text-[var(--Greyscale-white)] text-[14.9px] leading-[22.35px] tracking-[0.14px] mt-[12px]",
+          titleClassName
+        )}
+      >
         {title}
       </div>
       <div className="text-[var(--Greyscale-400)] text-[11.175px] leading-[16.762px] tracking-[0.373px]">
