@@ -1,4 +1,4 @@
-export default () => (
+const Dot = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="7"
@@ -13,3 +13,4 @@ export default () => (
     />
   </svg>
 );
+export default Dot;

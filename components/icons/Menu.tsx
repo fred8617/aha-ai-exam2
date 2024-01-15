@@ -2,7 +2,7 @@
 /**
  * The fill color should be currentColor then the color will be changed sync with text color
  */
-export default () => (
+const Menu = () => (
   <svg
     width="24"
     height="24"
@@ -18,3 +18,5 @@ export default () => (
     />
   </svg>
 );
+
+export default Menu;
