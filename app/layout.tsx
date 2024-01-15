@@ -32,7 +32,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={ubuntu.className}>
+      <body id="__next" className={ubuntu.className}>
         <QueryProvider>
           <ThemeProvider theme={theme}>
             <AppProvider menus={menus}>

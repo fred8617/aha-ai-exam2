@@ -80,9 +80,8 @@ const Search: FC<SearchProps> = () => {
       />
       <Divider className="xs:absolute xs:left-[20px] xs:m-0 xs:bottom-[144px] xs:w-[calc(100vw-40px)] my-[30px]" />
       <Button
-        style={{ position: "absolute" }}
         onClick={handleSearchClick}
-        className="xs:w-[calc(100vw-40px)] xs:left-[20px] xs:bottom-[24px] w-[343px] bottom-[87px]"
+        className="xs:w-[calc(100vw-40px)] xs:left-[20px] xs:bottom-[24px] w-[343px] absolute bottom-[87px]"
         variant="aha-contained"
       >
         SEARCH
