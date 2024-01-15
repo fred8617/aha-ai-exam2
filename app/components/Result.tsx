@@ -106,6 +106,7 @@ const Result: FC<ResultProps> = () => {
                   }
                   if (
                     showMoreButton &&
+                    xs &&
                     // Because the loading text height is less than 40
                     // If there more data, we can scroll 1px to trigger load more
                     scrollTop >= rowCount * rowHeight - height
