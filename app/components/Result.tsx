@@ -94,6 +94,13 @@ const Result: FC<ResultProps> = () => {
             return (
               <Grid
                 onScroll={({ scrollTop }) => {
+                  console.log(
+                    scrollTop,
+                    rowCount,
+                    rowHeight,
+                    rowCount * rowHeight - height + 40
+                  );
+
                   if (isLoading) {
                     return;
                   }
@@ -101,7 +108,7 @@ const Result: FC<ResultProps> = () => {
                     showMoreButton &&
                     // Because the loading text height is less than 40
                     // If there more data, we can scroll 1px to trigger load more
-                    scrollTop === rowCount * rowHeight - height + 40
+                    scrollTop >= rowCount * rowHeight - height
                   ) {
                     setPage(page + 1);
                   }
